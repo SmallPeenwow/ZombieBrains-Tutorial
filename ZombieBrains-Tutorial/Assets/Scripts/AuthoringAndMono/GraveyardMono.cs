@@ -1,12 +1,14 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 public class GraveyardMono : MonoBehaviour
 {
     public float2 FieldDimensions;
     public int NumberTombstonesToSpawn;
     public GameObject TombstonePrefab;
+    public uint RandomSeed;
 }
 
 public class GraveyardBaker : Baker<GraveyardMono>
@@ -19,5 +21,11 @@ public class GraveyardBaker : Baker<GraveyardMono>
             NumberTombstonesToSpawn = authoring.NumberTombstonesToSpawn,
             TombstonePrefab = GetEntity(authoring.TombstonePrefab),
         });
+
+        AddComponent(new GraveyardRandom
+        {
+            Value = Random.CreateFromIndex(authoring.RandomSeed),
+        });
+
     }
 }
