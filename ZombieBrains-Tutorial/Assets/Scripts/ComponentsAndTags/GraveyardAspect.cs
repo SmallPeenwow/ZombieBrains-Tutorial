@@ -95,4 +95,6 @@ public readonly partial struct GraveyardAspect : IAspect
     {
         return ZombieSpawnPoints[_graveyardRandom.ValueRW.Value.NextInt(ZombieSpawnPoints.Length)];
     }
+
+    public float3 Position => _transformAspect.LocalPosition;
 }

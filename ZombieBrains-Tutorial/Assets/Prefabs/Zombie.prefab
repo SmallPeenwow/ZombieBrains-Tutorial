@@ -424,6 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9044115827107593774}
+  - component: {fileID: 8086228364605412632}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -452,6 +453,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8086228364605412632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9044115827107593775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416ea5a6f0cb15f43b6d1bda13a0a2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RiseRate: 0.5
+  WalkSpeed: 0.5
+  WalkAmplitude: 0.2
+  WalkFrequency: 1
+  EatDamage: 1
+  EatAmplitude: 0.2
+  EatFrequency: 10
 --- !u!1 &9044115827234658676
 GameObject:
   m_ObjectHideFlags: 0
