@@ -22,11 +22,20 @@ public readonly partial struct ZombieEatAspect : IAspect
         set => _zombieTimer.ValueRW.Value = value;
     }
 
-    public void Eat(float deltaTime)
+    public void Eat(float deltaTime, EntityCommandBuffer.ParallelWriter ecb, int sortKey, Entity brainEntity)
     {
         ZombieTimer += deltaTime;
 
         var eatAngle = EatAmplitude * math.sin(EatFrequency * ZombieTimer);
         _transform.LocalRotation = quaternion.Euler(eatAngle, Heading, 0);
+
+        var eatDamage = EatDamagePerSecond * deltaTime;
+        var curBrainDamage = new BrainDamageBufferElement { Value = eatDamage };
+        ecb.AppendToBuffer(sortKey, brainEntity, curBrainDamage);
+    }
+
+    public bool IsInEatingRange(float3 brainPosition, float brainRadiusSq)
+    {
+        return math.distancesq(brainPosition, _transform.LocalPosition) <= brainRadiusSq - 1;
     }
 }
